@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaSave, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { updatePost } from "../redux/api/postsApi";
+import { updatePost } from "../../redux/api/postsApi";
 
 const UpdatePostModal = ({ isOpen, onClose, post }) => {
   const [title, setTitle] = useState("");
