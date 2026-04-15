@@ -1,0 +1,65 @@
+import { Link } from "react-router-dom";
+import Sidebar from "../../components/sidebar/Sidebar";
+import PostList from "../posts/PostList";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { fetchPosts, getPostsCount } from "../../redux/api/postsApi";
+import Pagination from "../../components/pagination/Pagination";
+
+const POSTS_PER_PAGE = 6;
+
+const Home = () => {
+  const dispatch = useDispatch();
+  const { posts, postCount } = useSelector((state) => state.post);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pages = Math.ceil(postCount / POSTS_PER_PAGE);
+
+  useEffect(() => {
+    dispatch(fetchPosts(currentPage));
+    window.scrollTo(0, 0);
+  }, [currentPage, dispatch]);
+
+  useEffect(() => {
+    dispatch(getPostsCount());
+  }, [dispatch]);
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4 mb-10">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">
+            Welcome to Blog
+          </h1>
+          <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+            Discover stories, ideas, and insights from our community
+          </p>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 pb-12">
+        <Sidebar />
+        <div className="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-blue-500 pl-3 mt-8">
+          Latest Posts
+        </div>
+        <PostList posts={posts} />
+        {pages > 1 && (
+          <div className="mt-12">
+            <Pagination
+              pages={pages}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </div>
+        )}
+        <Link
+          to="/posts"
+          className="text-blue-600 font-medium mt-4 hover:text-blue-800 inline-flex items-center gap-1"
+        >
+          See All Posts →
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
