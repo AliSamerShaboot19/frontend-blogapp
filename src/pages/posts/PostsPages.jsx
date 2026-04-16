@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, getPostsCount } from "../../redux/api/postsApi";
 import { useState } from "react";
 
-const PostPerPage = 6;
+const PostPerPage = 3;
 
 const PostsPages = () => {
   const dispatch = useDispatch();
