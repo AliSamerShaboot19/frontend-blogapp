@@ -4,7 +4,7 @@ import PostList from "../posts/PostList";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchPosts, getPostsCount } from "../../redux/api/postsApi";
-import Pagination from "../../components/pagination/Pagination";
+
 
 const POSTS_PER_PAGE = 3;
 
@@ -18,6 +18,7 @@ const Home = () => {
     dispatch(fetchPosts(currentPage));
     window.scrollTo(0, 0);
   }, [currentPage, dispatch]);
+  
 
   useEffect(() => {
     dispatch(getPostsCount());
