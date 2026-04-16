@@ -42,15 +42,6 @@ const Home = () => {
           Latest Posts
         </div>
         <PostList posts={posts} />
-        {pages > 1 && (
-          <div className="mt-12">
-            <Pagination
-              pages={pages}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
-          </div>
-        )}
         <Link
           to="/posts"
           className="text-blue-600 font-medium mt-4 hover:text-blue-800 inline-flex items-center gap-1"
