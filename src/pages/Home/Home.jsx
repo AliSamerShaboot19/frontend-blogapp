@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { fetchPosts, getPostsCount } from "../../redux/api/postsApi";
 import Pagination from "../../components/pagination/Pagination";
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 3;
 
 const Home = () => {
   const dispatch = useDispatch();
