@@ -3,26 +3,19 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import PostList from "../posts/PostList";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchPosts, getPostsCount } from "../../redux/api/postsApi";
-
-
-const POSTS_PER_PAGE = 3;
+import { fetchPosts } from "../../redux/api/postsApi";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { posts, postCount } = useSelector((state) => state.post);
-  const [currentPage, setCurrentPage] = useState(1);
-  const pages = Math.ceil(postCount / POSTS_PER_PAGE);
+  const { posts } = useSelector((state) => state.post);
+
+ 
 
   useEffect(() => {
-    dispatch(fetchPosts(currentPage));
+    dispatch(fetchPosts(1));
     window.scrollTo(0, 0);
-  }, [currentPage, dispatch]);
-  
-
-  useEffect(() => {
-    dispatch(getPostsCount());
   }, [dispatch]);
+  
 
   return (
     <div className="min-h-screen bg-gray-50">
