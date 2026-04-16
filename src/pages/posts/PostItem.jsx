@@ -16,11 +16,12 @@ const PostItem = ({ post, username, userId }) => {
       <div className="p-5 flex flex-col flex-grow">
         <div className="flex items-center justify-between text-sm text-gray-500 mb-3">
           <div className="flex items-center gap-2">
-            <img
-              src={post?.user?.profilePhoto?.url}
+            {post?.user?.profilePhoto && 
+            <img src={post?.user?.profilePhoto?.url}
               alt={post?.user?.username}
               className="w-6 h-6 rounded-full object-cover"
-            />
+            /> 
+            }            
             <strong className="text-gray-700">Author:</strong>
             <Link
               to={profileLink}
